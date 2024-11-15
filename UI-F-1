@@ -1,0 +1,145 @@
+-- Crear la interfaz de usuario
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local ToggleButton = Instance.new("TextButton")
+local TitleLabel = Instance.new("TextLabel")
+local CloseButton = Instance.new("TextButton")
+local MainActionsLabel = Instance.new("TextLabel")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local UIListLayout = Instance.new("UIListLayout")
+local NameLabel = Instance.new("TextLabel") -- Añadir etiqueta para el nombre
+
+-- Configuración de ScreenGui
+ScreenGui.Name = "GameScriptsUI"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Configuración del nombre
+NameLabel.Name = "NameLabel"
+NameLabel.Size = UDim2.new(1, 0, 0.2, 0)
+NameLabel.Position = UDim2.new(0, 0, 0.4, 0)
+NameLabel.BackgroundTransparency = 1 -- Hacer el fondo completamente transparente
+NameLabel.Text = "NbHP"
+NameLabel.TextColor3 = Color3.fromRGB(255, 255, 255) -- Color dorado
+NameLabel.Font = Enum.Font.GothamBold
+NameLabel.TextSize = 200 -- Tamaño del texto
+NameLabel.TextStrokeTransparency = 0.5 -- Efecto de contorno
+NameLabel.Parent = ScreenGui
+
+-- Mantener el nombre visible
+NameLabel.Visible = true
+NameLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+NameLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+
+-- Esperar un segundo con el texto visible
+wait(1)
+
+-- Desaparecer el nombre
+for i = 1, 10 do
+    NameLabel.TextTransparency = i * 0.1
+    wait(0.1)
+end
+
+NameLabel.Visible = false -- Ocultar el nombre después de la animación
+
+-- Configuración del marco principal
+MainFrame.Name = "MainFrame"
+MainFrame.Size = UDim2.new(0.4, 0, 0.6, 0)
+MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+MainFrame.BorderSizePixel = 0
+MainFrame.Visible = true -- Mostrar el marco
+MainFrame.Parent = ScreenGui
+
+-- Botón para alternar la visibilidad del marco principal
+ToggleButton.Name = "ToggleButton"
+ToggleButton.Size = UDim2.new(0.1, 0, 0.05, 0)
+ToggleButton.Position = UDim2.new(0.45, 0, 0.1, 0)
+ToggleButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+ToggleButton.Text = "Toggle UI"
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleButton.Font = Enum.Font.GothamBold
+ToggleButton.TextSize = 18
+ToggleButton.Parent = ScreenGui
+
+ToggleButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = not MainFrame.Visible
+end)
+
+-- Etiqueta del título
+TitleLabel.Name = "TitleLabel"
+TitleLabel.Size = UDim2.new(1, 0, 0.15, 0)
+TitleLabel.Position = UDim2.new(0, 0, 0, 0)
+TitleLabel.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+TitleLabel.Text = "Guerra de Torres"
+TitleLabel.TextColor3 = Color3.fromRGB(255, 215, 0) -- Color dorado
+TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.TextSize = 24
+TitleLabel.Parent = MainFrame
+
+-- Botón de cerrar
+CloseButton.Name = "CloseButton"
+CloseButton.Size = UDim2.new(0.1, 0, 0.05, 0)
+CloseButton.Position = UDim2.new(0.9, 0, 0, 0)
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.TextSize = 18
+CloseButton.Parent = MainFrame
+
+CloseButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = false
+end)
+
+-- Etiqueta de acciones principales
+MainActionsLabel.Name = "MainActionsLabel"
+MainActionsLabel.Size = UDim2.new(1, 0, 0.1, 0)
+MainActionsLabel.Position = UDim2.new(0, 0, 0.15, 0)
+MainActionsLabel.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+MainActionsLabel.Text = "By NbHp"
+MainActionsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+MainActionsLabel.Font = Enum.Font.Gotham
+MainActionsLabel.TextSize = 18
+MainActionsLabel.Parent = MainFrame
+
+-- Configuración del marco de desplazamiento
+ScrollingFrame.Name = "ScrollingFrame"
+ScrollingFrame.Size = UDim2.new(1, 0, 0.75, 0)
+ScrollingFrame.Position = UDim2.new(0, 0, 0.25, 0)
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+ScrollingFrame.ScrollBarThickness = 10
+ScrollingFrame.Parent = MainFrame
+
+UIListLayout.Parent = ScrollingFrame
+UIListLayout.FillDirection = Enum.FillDirection.Vertical
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Top
+UIListLayout.Padding = UDim.new(0, 10)
+
+-- Función para crear botones en el marco de desplazamiento
+local function createButton(name, callback)
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0.8, 0, 0.1, 0)
+    button.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    button.Text = name
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Font = Enum.Font.Gotham
+    button.TextSize = 16
+    button.Parent = ScrollingFrame
+
+    -- Efecto de hover
+    button.MouseEnter:Connect(function()
+        button.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    end)
+
+    button.MouseLeave:Connect(function()
+        button.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    end)
+
+    button.MouseButton1Click:Connect(callback)
+end
+
+-- Creación de botones con sus respectivas acciones
+createButton("F", function()
+    loadstring
+end)
