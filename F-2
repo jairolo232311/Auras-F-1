@@ -1,0 +1,16 @@
+local args = {
+    [1] = {
+        ["10004"] = 3
+    }
+}
+
+game:GetService("ReplicatedStorage").Functions.Fuse.FuseRF:InvokeServer(unpack(args))
+
+wait(0.2)
+local args = {
+    [1] = {
+        ["10005"] = 3
+    }
+}
+
+game:GetService("ReplicatedStorage").Functions.Fuse.FuseRF:InvokeServer(unpack(args))
