@@ -140,6 +140,30 @@ local function createButton(name, callback)
 end
 
 -- Creación de botones con sus respectivas acciones
-createButton("F", function()
-    loadstring
+createButton("Cancel", function()
+_G.running = false
+end)
+
+createButton("F-1", function()
+_G.running = true
+while _G.running do
+loadstring(game:HttpGet("https://raw.githubusercontent.com/jairolo232311/Auras-F-1/refs/heads/main/F-1"))()
+task.wait()
+end
+end)
+
+createButton("F-2", function()
+_G.running = true
+while _G.running do
+loadstring(game:HttpGet("https://raw.githubusercontent.com/jairolo232311/Auras-F-1/refs/heads/main/F-2"))()
+task.wait()
+end
+end)
+
+createButton("F-3", function()
+_G.running = true
+while _G.running do
+loadstring(game:HttpGet("https://raw.githubusercontent.com/jairolo232311/Auras-F-1/refs/heads/main/F-3"))()
+task.wait()
+end
 end)
