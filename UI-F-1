@@ -167,3 +167,11 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/jairolo232311/Auras-F
 task.wait()
 end
 end)
+
+createButton("F-1-2", function()
+_G.runnig = true
+while _G.running do
+loadstring(game:HttpGet("https://raw.githubusercontent.com/jairolo232311/Auras-F-1/refs/heads/main/F-1-2"))()
+task.wait()
+end
+end)
